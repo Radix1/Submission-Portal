@@ -1,0 +1,38 @@
+{
+  "name": "submission-portal",
+  "version": "1.0.0",
+  "description": "A solution submission portal for Bughunt and Cryptography event.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ComputeAid/Submission-Portal.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "ExpressJs",
+    "Angular4",
+    "MongoDB"
+  ],
+  "author": "Saquib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ComputeAid/Submission-Portal/issues"
+  },
+  "homepage": "https://github.com/ComputeAid/Submission-Portal#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
+    "mongoose": "^5.0.7",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "passport-local": "^1.0.0"
+  }
+}
