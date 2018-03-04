@@ -7,7 +7,7 @@ const User = require('../models/user');
 const config = require('../config/db');
 
 //Register
-router.post('/register', async (req,res, next) => {
+router.post('/register', async (req,res) => {
     let newUser = new User({
         name: req.body.name,
         email: req.body.email,
@@ -26,7 +26,7 @@ router.post('/register', async (req,res, next) => {
 });
 
 //authenticate
-router.post('/authenticate', (req,res, next) => {
+router.post('/authenticate', (req,res) => {
     const username = req.body.username;
     const password = req.body.password;
     

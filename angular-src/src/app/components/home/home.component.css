@@ -1,0 +1,17 @@
+.one{
+    font-family: 'Signika', sans-serif;
+    font-size: 500%;
+    text-align: center;
+    position: relative;
+    padding: 1%;
+    color: #FF4B4B;
+}
+    
+ .two{
+    font-family: 'Exo', sans-serif;
+    font-size: 300%;
+    text-align: center;
+    position: relative;
+    padding: 1%;
+    color: #FF4B4B;
+ }

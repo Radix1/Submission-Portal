@@ -1,0 +1,73 @@
+import { Injectable } from '@angular/core';
+import {Http, Headers, RequestOptions} from '@angular/http';
+import { HttpModule } from '@angular/http';
+
+
+import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
+
+@Injectable()
+export class AuthService {
+  
+  public authToken: any;
+  public user: any;
+  public domain = 'http://localhost:3000';
+  public options;
+
+  constructor(
+  private http: Http
+  ) { }
+
+  public createAuthenticationHeaders() {
+    this.loadToken(); // Get token so it can be attached to headers
+    // Headers configuration options
+    this.options = new RequestOptions({
+      headers: new Headers({
+        'Content-Type': 'application/json', // Format set to JSON
+        'authorization': this.authToken // Attach token
+      })
+    });
+  }
+
+  public loadToken() {
+    this.authToken = localStorage.getItem('token'); // Get tokens and asssign to variable to be used elsewhere
+  }
+  public registerUser(user) {
+    return this.http.post(this.domain + '/users/register', user)
+    .map(res => res.json());
+  }
+
+  public loginUser(user) {
+    return this.http.post(this.domain + '/users/authenticate', user)
+    .map(res => res.json());
+  }
+
+  public storeUserData(token, user) { 
+
+    localStorage.setItem('token', token); // Set token in local storage
+    localStorage.setItem('user', JSON.stringify(user));
+   // Set user in local storage as string
+    this.authToken = token; // Assign token to be used elsewhere
+    this.user = user; // Set user to be used elsewhere
+    // this.user.isAdmin = user.isAdmin;
+  }
+
+  public checkisAdmin() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user === undefined || user === null) {
+      return false;
+    } else if (user.isAdmin === true) {
+      return true;
+    }
+  }
+  public loggedIn() {
+    return tokenNotExpired();
+  }
+
+  public logout() {
+    this.authToken = null; // Set token to null
+    this.user = '';
+    localStorage.clear(); // Clear local storage
+  }
+
+}

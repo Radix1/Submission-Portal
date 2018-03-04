@@ -1,3 +1,176 @@
-<p>
-  register works!
-</p>
+
+
+<div class="container top">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">SIGN UP</h2>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="form" (submit)="onSignupSubmit()">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text"
+                        name="name"
+                        formControlName="name"
+                        class="form-control"
+                        placeholder="Enter Name"
+                        autocomplete="off"
+                        [ngClass]="{'is-invalid': (form.controls.name.errors && form.controls.name.dirty) , 'is-valid': !form.controls.name.errors}">
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text"
+                         name="username"
+                         formControlName="username"
+                         class="form-control"
+                         placeholder="Enter username(XYZ)"
+                         autocomplete="off"
+                         [ngClass]="{'is-invalid': (form.controls.username.errors && form.controls.username.dirty) , 'is-valid': !form.controls.username.errors}"></div>
+                  </div>
+                </div>
+            
+                <!-- Email Input -->
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                      <label for="email">Email</label>
+                    </div>
+                <div class="col-md-9">
+                  <input type="text"
+                  name="email"
+                  class="form-control"
+                  [ngClass]="{'is-invalid': (form.controls.email.errors && form.controls.email.dirty) , 'is-valid': !form.controls.email.errors}"
+                  autocomplete="off"
+                  placeholder="*email"
+                  formControlName="email">
+                  <!-- Validation -->
+                  <div *ngIf="form.controls.email.errors?.required && form.controls.email.dirty" class="invalid-feedback">This Field is required</div>
+                  <div class="invalid-feedback" *ngIf="(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty">Minimum characters: 5, Maximum characters: 30</div>
+                  <div class="invalid-feedback" *ngIf="form.controls.email.errors?.validateemail && form.controls.email.dirty">This must be a valid e-mail</div>
+                      </div>
+                    </div>
+              </div>
+            
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="college">College</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text"
+                            name="college"
+                            formControlName="college"
+                            class="form-control"
+                            placeholder="Enter college name"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': (form.controls.college.errors && form.controls.college.dirty) , 'is-valid': !form.controls.college.errors}">
+                        </div>
+                      </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-3">
+                          <label for="college">Year</label>
+                      </div>
+                      <div class="col-md-9">
+                        <select class="form-control col-lg-4"
+                        name="year"
+                        formControlName="year"
+                        >
+                        <option value="" disabled selected>Choose...</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                      </select>
+                    </div>
+                    </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="contact">Contact</label>
+                    </div>
+                    <div class="col-md-9">
+                      <input type="contact"
+                      name="contact"
+                      formControlName="contact"
+                      class="form-control"
+                      placeholder="Enter contact"
+                      autocomplete="off"
+                      [ngClass]="{'is-invalid': (form.controls.contact.errors && form.controls.contact.dirty) , 'is-valid': !form.controls.contact.errors}"></div>
+                  </div>
+            </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="col-md-9">
+                          <input type="password"
+                          name="password"
+                          formControlName="password"
+                          class="form-control"
+                          placeholder="Enter password"
+                          autocomplete="off"
+                          [ngClass]="{'is-invalid': (form.controls.password.errors && form.controls.password.dirty) , 'is-valid': !form.controls.password.errors}"></div>
+                      </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="confirmpassword">Confirm Password</label>
+                        </div>
+                        <div class="col-md-9">
+                          <input type="password"
+                          name="confirm"
+                          formControlName="confirm"
+                          class="form-control"
+                          placeholder="Confrim password"
+                          autocomplete="off"
+                          [ngClass]="{'is-invalid':  (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty) , 'is-valid': !form.controls.confirm.errors && !form.errors?.matchingPasswords}">
+                          <div *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty"
+                          class="invalid-feedback">Password do not match</div>
+                        </div>
+                      </div>
+                  
+                  
+            
+                </div>
+                <div class="row">
+                  <div class="col-md-9 offset-md-3">
+                    <div class="row">
+                      <div class="col-md-2"><input
+                        [disabled]="!form.valid"
+                        type="submit" class="btn btn-primary" 
+                        value="Sign up">
+                      </div>  
+                      <div class="col-md-10 mt-2">
+                          <p>Already Have an account? <a 
+                            routerLink="/login" >Sign in</a></p>
+                      </div>
+                        
+                    </div>  
+                  </div>
+                    
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
